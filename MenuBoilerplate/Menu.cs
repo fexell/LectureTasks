@@ -10,8 +10,9 @@ namespace MenuBoilerplate {
             { 1, ( "FizzBuzz", Program.FizzBuzz ) },
             { 2, ( "Age Check", Program.AgeCheck ) },
             { 3, ( "Grade Check", Program.GradeCheck ) },
-            { 4, ( "Number adder", Program.NumberAdder ) },
+            { 4, ( "Number Adder", Program.NumberAdder ) },
             { 5, ( "Number Looper", Program.NumberLooper ) },
+            { 6, ( "Foreach Task", Program.ForeachTask ) },
             { 0, ( "Exit", Exit ) }
         };
 

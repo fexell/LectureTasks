@@ -1,5 +1,5 @@
 ﻿
-
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace MenuBoilerplate {
@@ -186,6 +186,25 @@ namespace MenuBoilerplate {
             }
 
             Console.WriteLine();
+            Console.WriteLine( "Press any key to return to the menu." );
+            Console.ReadKey();
+        }
+
+        public static void ForeachTask() {
+            int n = 0;
+            int numberOfA = 0;
+            string[] fruits = [ "Apple", "Banana", "Pear", "Orange", "Kiwi" ];
+
+            foreach( string fruit in fruits ) {
+                n += 1;
+
+                numberOfA += fruit.Count(x => x == 'a');
+
+                Console.WriteLine( $"Fruit nr. { n }: { fruit }" );
+            }
+
+            Console.WriteLine( $"Number of As: {numberOfA}" );
+
             Console.WriteLine( "Press any key to return to the menu." );
             Console.ReadKey();
         }
