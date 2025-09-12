@@ -84,8 +84,9 @@ namespace MenuBoilerplate {
             input = Console.ReadLine();
 
             // If the input is not valid, ask again
-            while ( !Regex.IsMatch( input, @"^[1-6]$|^[a-f]$", RegexOptions.IgnoreCase ) ) {
-                Console.Write( "Invalid input. Please enter a valid grade (1-6 or A-F): " );
+            while ( !Regex.IsMatch( input, @"^[0-5]$|^[a-f]$", RegexOptions.IgnoreCase ) ) {
+                Console.WriteLine();
+                Console.Write( "Invalid input. Please enter a valid grade (0-5 or A-F): " );
                 input = Console.ReadLine();
             }
 
@@ -128,7 +129,7 @@ namespace MenuBoilerplate {
                     break;
 
                 // Cases for "6", "f", or "F"
-                case "6":
+                case "0":
                 case "f":
                 case "F":
                     Console.WriteLine( "You got an F!" );
