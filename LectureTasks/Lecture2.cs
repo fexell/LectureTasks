@@ -1,67 +1,67 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace MenuBoilerplate {
-    public class  Program {
-        static int NumberCheck( string n ) {
-            while( true ) {
-                if( int.TryParse( n, out int number ) ) {
-
-                    return number;
-
-                } else {
-
-                    Console.WriteLine();
-                    Console.Write( "Invalid input. Please enter a valid number: " );
-                    n = Console.ReadLine();
-                    Console.WriteLine();
-
-                }
-            }
-        }
+    internal class Lecture2 : Program {
 
         public static void FizzBuzz() {
             int number;
 
             Console.Write( "Enter a number: " );
-            number = NumberCheck( Console.ReadLine() );
+            number = Helpers.NumberCheck( Console.ReadLine() );
 
-            for( int i = 1; i <= number; i++ ) {
-                if( i % 3 == 0 && i % 5 == 0 ) {
+            for ( int i = 1; i <= number; i++ ) {
+                if ( i % 3 == 0 && i % 5 == 0 ) {
                     Console.WriteLine( "FizzBuzz" );
-                } else if( i % 3 == 0 ) {
+                } else if ( i % 3 == 0 ) {
                     Console.WriteLine( "Fizz" );
-                } else if( i % 5 == 0 ) {
+                } else if ( i % 5 == 0 ) {
                     Console.WriteLine( "Buzz" );
                 } else {
                     Console.WriteLine( i );
                 }
             }
-            Console.WriteLine( "Press any key to return to the menu." );
-            Console.ReadKey();
+            
+            Menu.ReturnToMenu();
         }
 
-        public static void AgeCheck() {
+        /*
+         * AGE CHECK TASK METHOD
+         * Asks for name, and age, and prints a message to let the user know they are a minor, adult, or senior
+         */
+        public static void AgeTask() {
+
+            // Initiate the variables
             string name;
             int age;
 
+            // Get the name
             Console.Write( "What is your name?: " );
-            name = Console.ReadLine();
+            name = Helpers.NameCheck( Console.ReadLine() );
 
+            // Get the age
             Console.Write( "How old are you?: " );
-            age = NumberCheck( Console.ReadLine() );
+            age = Helpers.NumberCheck( Console.ReadLine() );
 
-            if( age < 18 ) {
-                Console.WriteLine( $"Hello { name }, you are a minor." );
-            } else if( age >= 18 && age <= 64 ) {
-                Console.WriteLine( $"Hello { name }, you are an adult." );
+            // If the age entered is less than 18
+            if ( age < 18 ) {
+                Console.WriteLine( $"Hello {name}, you are a minor." );
+
+            // Else if the age entered is between 18 and 64
+            } else if ( age >= 18 && age <= 64 ) {
+                Console.WriteLine( $"Hello {name}, you are an adult." );
+
+            // Else if the age entered is greater than 64 (65 or higher)
             } else {
-                Console.WriteLine( $"Hello { name }, you are a senior." );
+                Console.WriteLine( $"Hello {name}, you are a senior." );
             }
 
-            Console.WriteLine( "Press any key to return to the menu." );
-            Console.ReadKey();
+            // Show the return to menu prompt
+            Menu.ReturnToMenu();
         }
 
         /*
@@ -74,7 +74,7 @@ namespace MenuBoilerplate {
          * - Använd switch-case för att matcha input med rätt meddelande
          * - Be användaren om att trycka på en knapp för att gå vidare till menyn igen
          */
-        public static void GradeCheck() {
+        public static void GradeTask() {
 
             // Initiate variables
             string input;
@@ -84,7 +84,7 @@ namespace MenuBoilerplate {
             input = Console.ReadLine();
 
             // If the input is not valid, ask again
-            while ( !Regex.IsMatch( input, @"^[1-6]$|^[a-f]$" ) ) {
+            while ( !Regex.IsMatch( input, @"^[1-6]$|^[a-f]$", RegexOptions.IgnoreCase ) ) {
                 Console.Write( "Invalid input. Please enter a valid grade (1-6 or A-F): " );
                 input = Console.ReadLine();
             }
@@ -141,11 +141,14 @@ namespace MenuBoilerplate {
             }
 
             // Wait for user input before returning to the menu
-            Console.WriteLine( "Press any key to return to the menu." );
-            Console.ReadKey();
+            Menu.ReturnToMenu();
         }
 
-        public static void NumberAdder() {
+        /*
+         * ADD NUMBER(s) TASK METHOD
+         * Add as many numbers as the user wants
+         */
+        public static void AddNumberTask() {
 
             // Initiate/set the variables
             int number;
@@ -154,12 +157,12 @@ namespace MenuBoilerplate {
             // Start the do while loop
             do {
                 Console.Write( "Enter a number (exit with 0): " );
-                number = NumberCheck( Console.ReadLine() );
+                number = Helpers.NumberCheck( Console.ReadLine() );
 
                 // Add the number to the current sum
                 sum = sum + number;
 
-            // Continue the loop, until the user inputs a 0
+                // Continue the loop, until the user inputs a 0
             } while ( number != 0 );
 
             // Print the sum
@@ -167,50 +170,75 @@ namespace MenuBoilerplate {
             Console.WriteLine();
 
             // Prompt the user to press any key to go back to menu
-            Console.WriteLine( "Press any key to go back to menu." );
-            Console.ReadKey();
+            Menu.ReturnToMenu();
         }
 
-        public static void NumberLooper() {
+        /*
+         * LOOP NUMBERS TASK METHOD
+         * First, loop from 1 to 10; lastly, loop from 2 to 20, but only each number
+         */
+        public static void LoopNumbersTask() {
 
+            // Loop from 1 to 10
             Console.WriteLine( "1-10" );
-            for( int i = 1; i <= 10; i++ ) {
+            for ( int i = 1; i <= 10; i++ ) {
                 Console.WriteLine( i );
             }
 
+            // Write a line to seperate
             Console.WriteLine();
 
+            // Loop from 2 to 20, +2 for each iteration
             Console.WriteLine( "2-20" );
-            for( int i = 2; i <= 20; i += 2 ) {
+            for ( int i = 2; i <= 20; i += 2 ) {
                 Console.WriteLine( i );
             }
 
-            Console.WriteLine();
-            Console.WriteLine( "Press any key to return to the menu." );
-            Console.ReadKey();
+            Menu.ReturnToMenu();
         }
 
+        /*
+         * FOREACH TASK METHOD
+         * Print each fruit (in the array/list) -- once in "original mode" and once where the fruit names are uppercased -- and count
+         * the letter a
+         */
         public static void ForeachTask() {
-            int n = 0;
+
+            // Initiate the number-of-a variable
             int numberOfA = 0;
-            string[] fruits = [ "Apple", "Banana", "Pear", "Orange", "Kiwi" ];
 
-            foreach( string fruit in fruits ) {
-                n += 1;
+            // The fruits array/list
+            List<string> fruits = new List<string> { "Apple", "Banana", "Pear", "Orange", "Kiwi" };
 
-                numberOfA += fruit.Count(x => x == 'a');
+            // For each fruit...
+            foreach ( var ( fruit, index ) in fruits.Zip( Enumerable.Range( 0, fruits.Count() ) ) ) {
 
-                Console.WriteLine( $"Fruit nr. { n }: { fruit }" );
+                // ...increase the number of a letter count...
+                numberOfA += fruit.Count( x => Regex.IsMatch( x.ToString(), @"[a]{1}", RegexOptions.IgnoreCase ) );
+
+                // ...and print the fruit's number (starting at 1 (0+1)), with the fruit's name
+                Console.WriteLine( $"Original - Fruit nr. {index + 1}: {fruit}" );
             }
 
-            Console.WriteLine( $"Number of As: {numberOfA}" );
+            // A new line for some separation
+            Console.WriteLine();
 
-            Console.WriteLine( "Press any key to return to the menu." );
-            Console.ReadKey();
-        }
+            // For each fruit (again)...
+            foreach( var ( fruit, index ) in fruits.Zip( Enumerable.Range( 0, fruits.Count() ) ) ) {
 
-        static void Main( string[] args ) {
-            Menu.Show();
+                // ...uppercase the fruit's name/text...
+                string fruitToUppercase = fruit.ToUpper();
+
+                // ...and print the fruit's number, with the fruit's name
+                Console.WriteLine( $"Uppercase - Fruit nr. {index + 1}: {fruitToUppercase}" );
+            }
+
+            // Print the number of A(s) found
+            Console.WriteLine();
+            Console.WriteLine( $"\nNumber of A: {numberOfA}" );
+
+            // Prompt the user to return to the main menu
+            Menu.ReturnToMenu();
         }
     }
 }

@@ -7,18 +7,14 @@ using System.Threading.Tasks;
 namespace MenuBoilerplate {
     internal class Menu {
         static Dictionary<int, ( string, Action )> MenuOptions = new Dictionary<int, ( string, Action )> {
-            { 1, ( "FizzBuzz", Program.FizzBuzz ) },
-            { 2, ( "Age Check", Program.AgeCheck ) },
-            { 3, ( "Grade Check", Program.GradeCheck ) },
-            { 4, ( "Number Adder", Program.NumberAdder ) },
-            { 5, ( "Number Looper", Program.NumberLooper ) },
-            { 6, ( "Foreach Task", Program.ForeachTask ) },
+            { 1, ( "FizzBuzz", Lecture2.FizzBuzz ) },
+            { 2, ( "Age Task", Lecture2.AgeTask ) },
+            { 3, ( "Grade Task", Lecture2.GradeTask ) },
+            { 4, ( "Add Number(s) Task", Lecture2.AddNumberTask ) },
+            { 5, ( "Loop Numbers Task", Lecture2.LoopNumbersTask ) },
+            { 6, ( "Foreach Task", Lecture2.ForeachTask ) },
             { 0, ( "Exit", Exit ) }
         };
-
-        public Menu() {
-            Show();
-        }
 
         static void Exit() {
             Environment.Exit( 0 );
@@ -39,6 +35,8 @@ namespace MenuBoilerplate {
                 Console.Write( "> " );
                 var input = Console.ReadLine();
 
+                Console.WriteLine();
+
                 if( int.TryParse( input, out int choice ) && MenuOptions.ContainsKey( choice ) ) {
                     MenuOptions[ choice ].Item2.Invoke();
                 } else {
@@ -46,6 +44,12 @@ namespace MenuBoilerplate {
                     Console.ReadKey();
                 }
             }
+        }
+
+        public static void ReturnToMenu() {
+            Console.WriteLine();
+            Console.WriteLine( "Press a key to continue to the menu." );
+            Console.ReadKey();
         }
     }
 }
