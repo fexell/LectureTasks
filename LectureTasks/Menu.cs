@@ -4,28 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MenuBoilerplate {
+namespace LectureTasks {
+
+    /*
+     * MENU ITEM CLASS
+     */
+    internal class MenuItem {
+
+        // The title of the menu item
+        public string Title { get; }
+
+        // The action of the menu item
+        public Action Action { get; }
+
+        // Whether or not to add a separator after the menu item (defaults to false)
+        public bool AddSeparatorAfter { get; } = false;
+
+        // Constructor
+        public MenuItem( string title, Action action, bool addSeparatorAfter = false ) {
+            Title = title;
+            Action = action;
+            AddSeparatorAfter = addSeparatorAfter;
+        }
+    }
+
     internal class Menu {
-        static Dictionary<int, ( string, Action )> MenuOptions = new Dictionary<int, ( string, Action )> {
-            { 1, ( "FizzBuzz", Lecture2.FizzBuzz ) },
-            { 2, ( "Age Task", Lecture2.AgeTask ) },
-            { 3, ( "Grade Task", Lecture2.GradeTask ) },
-            { 4, ( "Add Number(s) Task", Lecture2.AddNumberTask ) },
-            { 5, ( "Loop Numbers Task", Lecture2.LoopNumbersTask ) },
-            { 6, ( "Foreach Task", Lecture2.ForeachTask ) },
-            { 0, ( "Exit", Exit ) }
+
+        // All the menu options
+        static Dictionary<int, MenuItem> MenuOptions = new() {
+            { 1, new MenuItem( "FizzBuzz", Lecture2.FizzBuzz ) },
+            { 2, new MenuItem( "Age Task", Lecture2.AgeTask ) },
+            { 3, new MenuItem( "Grade Task", Lecture2.GradeTask ) },
+            { 4, new MenuItem( "Add Number Task", Lecture2.AddNumberTask ) },
+            { 5, new MenuItem( "Loop Numbers Task", Lecture2.LoopNumbersTask ) },
+            { 6, new MenuItem( "Foreach Task", Lecture2.ForeachTask, addSeparatorAfter: true ) },
+            { 0, new MenuItem( "Exit", Exit, true ) }
         };
 
+        // Exit the program
         static void Exit() {
             Environment.Exit( 0 );
         }
 
+        // Display the menu
         static void DisplayMenu() {
             foreach( var item in MenuOptions ) {
-                Console.WriteLine( $"{ item.Key }: { item.Value.Item1 }" );
+                Console.WriteLine( $"{item.Key}: {item.Value.Title}" );
+
+                if ( item.Value.AddSeparatorAfter )
+                    Console.WriteLine();
             }
         }
 
+        // Show the menu, and handles the running of the method/function
         public static void Show() {
             while( true ) {
                 Console.Clear();
@@ -38,7 +69,7 @@ namespace MenuBoilerplate {
                 Console.WriteLine();
 
                 if( int.TryParse( input, out int choice ) && MenuOptions.ContainsKey( choice ) ) {
-                    MenuOptions[ choice ].Item2.Invoke();
+                    MenuOptions[ choice ].Action.Invoke();
                 } else {
                     Console.WriteLine( "Invalid option. Press any key to try again." );
                     Console.ReadKey();
@@ -46,6 +77,7 @@ namespace MenuBoilerplate {
             }
         }
 
+        // For DRY, to be used for returning to the menu
         public static void ReturnToMenu() {
             Console.WriteLine();
             Console.WriteLine( "Press a key to continue to the menu." );

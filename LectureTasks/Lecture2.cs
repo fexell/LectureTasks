@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Globalization;
 
-namespace MenuBoilerplate {
+namespace LectureTasks {
     internal class Lecture2 : Program {
 
         public static void FizzBuzz() {
@@ -43,6 +44,9 @@ namespace MenuBoilerplate {
             Console.Write( "What is your name?: " );
             name = Helpers.NameCheck( Console.ReadLine() );
 
+            // Title case the name, so the first letter starts with a capital, and the rest are lowercase
+            name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase( name.ToLower() );
+
             // Get the age
             Console.Write( "How old are you?: " );
             age = Helpers.NumberCheck( Console.ReadLine() );
@@ -66,11 +70,16 @@ namespace MenuBoilerplate {
 
         /*
          * GRADE CHECK METHOD
-         * Asks for the user to input a grade (1-6 or A-F)
+         * Asks for the user to input a grade (0-5 or A-F)
+         * 
+         * Jag valde att använda regex först o främst, för att kolla om inputen var giltig, och loopa om och om igen, tills inputen är giltig.
+         * Sedan använde jag switch-case, som man skulle göra, och kollar flera cases, som till exempel:
+         * case "1": case "a": case "A":
+         * Egentligen behöver jag inte ett default case, eftersom regex-checken ser till att inputen är giltig innan den används i switch-casen.
          * 
          * Hur jag tänkte:
          * - Be användaren mata in en betyg
-         * - Kolla om input är giltig (1-6 eller A-F) -- ifall inte, be om input igen
+         * - Kolla om input är giltig (0-5 eller A-F) -- ifall inte, be om input igen
          * - Använd switch-case för att matcha input med rätt meddelande
          * - Be användaren om att trycka på en knapp för att gå vidare till menyn igen
          */
@@ -148,6 +157,8 @@ namespace MenuBoilerplate {
         /*
          * ADD NUMBER(s) TASK METHOD
          * Add as many numbers as the user wants
+         * - Asks for a number, and adds it to the current sum
+         * - If the number is 0, break the loop, and print the sum
          */
         public static void AddNumberTask() {
 
@@ -163,7 +174,7 @@ namespace MenuBoilerplate {
                 // Add the number to the current sum
                 sum = sum + number;
 
-                // Continue the loop, until the user inputs a 0
+            // Continue the loop, until the user inputs a 0
             } while ( number != 0 );
 
             // Print the sum
@@ -186,7 +197,7 @@ namespace MenuBoilerplate {
                 Console.WriteLine( i );
             }
 
-            // Write a line to seperate
+            // Write a line to separate
             Console.WriteLine();
 
             // Loop from 2 to 20, +2 for each iteration
@@ -235,7 +246,6 @@ namespace MenuBoilerplate {
             }
 
             // Print the number of A(s) found
-            Console.WriteLine();
             Console.WriteLine( $"\nNumber of A: {numberOfA}" );
 
             // Prompt the user to return to the main menu
