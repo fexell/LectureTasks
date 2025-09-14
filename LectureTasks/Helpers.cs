@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Globalization;
 
 namespace LectureTasks {
     internal class Helpers {
@@ -49,6 +50,14 @@ namespace LectureTasks {
                     return name;
                 }
             }
+        }
+
+        /*
+         * CAPITALIZE METHOD
+         * Capitalizes the first letter of a string, and makes the rest lowercase
+         */
+        public static string Capitalize( string s ) {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase( s.ToLower() );
         }
     }
 }

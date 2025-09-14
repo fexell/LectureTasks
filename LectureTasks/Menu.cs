@@ -28,6 +28,9 @@ namespace LectureTasks {
         }
     }
 
+    /*
+     * MENU CLASS
+     */
     internal class Menu {
 
         // All the menu options

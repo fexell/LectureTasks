@@ -45,7 +45,7 @@ namespace LectureTasks {
             name = Helpers.NameCheck( Console.ReadLine() );
 
             // Title case the name, so the first letter starts with a capital, and the rest are lowercase
-            name = CultureInfo.CurrentCulture.TextInfo.ToTitleCase( name.ToLower() );
+            name = Helpers.Capitalize( name );
 
             // Get the age
             Console.Write( "How old are you?: " );
