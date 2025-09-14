@@ -26,8 +26,6 @@ namespace LectureTasks {
                     Console.WriteLine( i );
                 }
             }
-            
-            Menu.ReturnToMenu();
         }
 
         /*
@@ -63,9 +61,6 @@ namespace LectureTasks {
             } else {
                 Console.WriteLine( $"Hello {name}, you are a senior." );
             }
-
-            // Show the return to menu prompt
-            Menu.ReturnToMenu();
         }
 
         /*
@@ -149,9 +144,6 @@ namespace LectureTasks {
                     Console.WriteLine( "You did not enter a correct grade." );
                     break;
             }
-
-            // Wait for user input before returning to the menu
-            Menu.ReturnToMenu();
         }
 
         /*
@@ -180,9 +172,6 @@ namespace LectureTasks {
             // Print the sum
             Console.WriteLine( $"The sum is: {sum}." );
             Console.WriteLine();
-
-            // Prompt the user to press any key to go back to menu
-            Menu.ReturnToMenu();
         }
 
         /*
@@ -205,8 +194,6 @@ namespace LectureTasks {
             for ( int i = 2; i <= 20; i += 2 ) {
                 Console.WriteLine( i );
             }
-
-            Menu.ReturnToMenu();
         }
 
         /*
@@ -247,9 +234,6 @@ namespace LectureTasks {
 
             // Print the number of A(s) found
             Console.WriteLine( $"\nNumber of A: {numberOfA}" );
-
-            // Prompt the user to return to the main menu
-            Menu.ReturnToMenu();
         }
     }
 }

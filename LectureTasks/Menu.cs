@@ -21,10 +21,20 @@ namespace LectureTasks {
         public bool AddSeparatorAfter { get; } = false;
 
         // Constructor
-        public MenuItem( string title, Action action, bool addSeparatorAfter = false ) {
+        public MenuItem( string title, Action action, bool addSeparatorAfter = false, bool autoReturn = true ) {
             Title = title;
-            Action = action;
             AddSeparatorAfter = addSeparatorAfter;
+
+            // Automatically prompt the user to return to the menu, if autoReturn is true,
+            // instead of executing the action in every method
+            if ( autoReturn )
+                Action = () => {
+                    action();
+                    Menu.ReturnToMenu();
+                };
+
+            else
+                Action = action;
         }
     }
 
@@ -74,7 +84,9 @@ namespace LectureTasks {
                 if( int.TryParse( input, out int choice ) && MenuOptions.ContainsKey( choice ) ) {
                     MenuOptions[ choice ].Action.Invoke();
                 } else {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine( "Invalid option. Press any key to try again." );
+                    Console.ResetColor();
                     Console.ReadKey();
                 }
             }
