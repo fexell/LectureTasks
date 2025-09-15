@@ -96,5 +96,19 @@ namespace LectureTasks {
         static double CalculateTotal( string product, double price, int quantity, double tax = 0.25 ) {
             return ( price * quantity ) * ( 1 + tax );
         }
+
+        public static void Run() {
+            Console.Write( "How many products do you wanna buy?: " );
+            int totalProducts = Helpers.NumberCheck( Console.ReadLine() );
+
+            Console.Write( "How much do you wanna pay for each product?: " );
+            int price = Helpers.NumberCheck( Console.ReadLine() );
+
+            Console.Write( "How much is the VAT in procent?: " );
+            var vat = double.TryParse( Console.ReadLine(), out double v );
+
+            var totalPrice = CalculateTotal( "Apples", totalProducts, price, v );
+            Console.WriteLine( $"Total price inc. VAT: {totalPrice}" );
+        }
     }
 }

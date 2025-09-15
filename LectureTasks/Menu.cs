@@ -53,7 +53,8 @@ namespace LectureTasks {
             { 6, new MenuItem( "Foreach Task", Lecture2.ForeachTask, addSeparatorAfter: true ) },
 
             { 7, new MenuItem( "Say Hello Task", () => Lecture3.SayHello( "World" ) ) },
-            { 8, new MenuItem( "Calculator", Calculator.Run ) },
+            { 8, new MenuItem( "Calculator Task", Calculator.Run ) },
+            { 9, new MenuItem( "Price Calculator Task", ProductPriceCalculator.Run ) },
 
             { 0, new MenuItem( "Exit", Exit, true ) }
         };
