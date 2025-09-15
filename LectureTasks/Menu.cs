@@ -55,6 +55,7 @@ namespace LectureTasks {
             { 7, new MenuItem( "Say Hello Task", () => Lecture3.SayHello( "World" ) ) },
             { 8, new MenuItem( "Calculator Task", Calculator.Run ) },
             { 9, new MenuItem( "Price Calculator Task", ProductPriceCalculator.Run ) },
+            { 10, new MenuItem( "BMI Calculator Task", BMICalculator.Run ) },
 
             { 0, new MenuItem( "Exit", Exit, true ) }
         };

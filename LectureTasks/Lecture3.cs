@@ -112,7 +112,7 @@ namespace LectureTasks {
         }
     }
 
-    internal class  BMICalculator {
+    internal class BMICalculator {
         static double Calculate( double weight, double height, string unit = "metric" ) {
             switch( unit ) {
                 case var value when new Regex( @"^(metric)$", RegexOptions.IgnoreCase ).IsMatch( value ):
@@ -125,6 +125,17 @@ namespace LectureTasks {
                     Console.WriteLine( "Unknown unit, returning 0" );
                     return 0;
             }
+        }
+
+        public static void Run() {
+            double bmi1 = Calculate( 70, 1.75 );
+            Console.WriteLine( $"BMI (metric, default): {bmi1:F2}" );
+
+            double bmi2 = Calculate( height: 1.80, weight: 85 );
+            Console.WriteLine( $"BMI (metric, named args): {bmi2:F2}" );
+
+            double bmi3 = Calculate( unit: "imperial", weight: 180, height: 70 );
+            Console.WriteLine( $"BMI (imperial): {bmi3:F2}" );
         }
     }
 }
