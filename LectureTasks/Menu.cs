@@ -52,7 +52,8 @@ namespace LectureTasks {
             { 5, new MenuItem( "Loop Numbers Task", Lecture2.LoopNumbersTask ) },
             { 6, new MenuItem( "Foreach Task", Lecture2.ForeachTask, addSeparatorAfter: true ) },
 
-            { 7, new MenuItem( "Say Hello Task", () => Lecture3.SayHello( "World" ), addSeparatorAfter: true ) },
+            { 7, new MenuItem( "Say Hello Task", () => Lecture3.SayHello( "World" ) ) },
+            { 8, new MenuItem( "Calculator", Calculator.Run ) },
 
             { 0, new MenuItem( "Exit", Exit, true ) }
         };
