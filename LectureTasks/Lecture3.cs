@@ -94,7 +94,7 @@ namespace LectureTasks {
 
     internal class ProductPriceCalculator {
         static double CalculateTotal( string product, double price, int quantity, double tax = 0.25 ) {
-            return ( price * quantity ) * ( 1 + tax );
+            return price * quantity  * ( 1 + tax );
         }
 
         public static void Run() {
@@ -107,8 +107,24 @@ namespace LectureTasks {
             Console.Write( "How much is the VAT in procent?: " );
             var vat = double.TryParse( Console.ReadLine(), out double v );
 
-            var totalPrice = CalculateTotal( "Apples", totalProducts, price, v );
+            var totalPrice = CalculateTotal( "Apples", price, totalProducts, v );
             Console.WriteLine( $"You bought {totalProducts} apples, total price (incl. tax): {totalPrice} kr" );
+        }
+    }
+
+    internal class  BMICalculator {
+        static double Calculate( double weight, double height, string unit = "metric" ) {
+            switch( unit ) {
+                case var value when new Regex( @"^(metric)$", RegexOptions.IgnoreCase ).IsMatch( value ):
+                    return weight / ( height * height );
+
+                case var value when new Regex( @"^(imperial)$", RegexOptions .IgnoreCase ).IsMatch( value ):
+                    return 703 * ( weight / ( height * height ) );
+
+                default:
+                    Console.WriteLine( "Unknown unit, returning 0" );
+                    return 0;
+            }
         }
     }
 }

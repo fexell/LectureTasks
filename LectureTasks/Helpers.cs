@@ -30,6 +30,19 @@ namespace LectureTasks {
             }
         }
 
+        public static double DoubleNumberCheck( string number ) {
+            while ( true ) {
+                if( double.TryParse( number, out double n ) ) {
+                    return n;
+                } else {
+                    Console.WriteLine();
+                    Console.Write( "Invalid input. Please enter a valid double number: " );
+                    number = Console.ReadLine();
+                    Console.WriteLine();
+                }
+            }
+        }
+
         /*
          * NAME CHECK METHOD
          * Checks if the input is a name and returns the name
