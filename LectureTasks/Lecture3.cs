@@ -91,4 +91,10 @@ namespace LectureTasks {
             }
         }
     }
+
+    internal class ProductPriceCalculator {
+        static double CalculateTotal( string product, double price, int quantity, double tax = 0.25 ) {
+            return ( price * quantity ) * ( 1 + tax );
+        }
+    }
 }
