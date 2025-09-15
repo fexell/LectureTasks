@@ -108,7 +108,7 @@ namespace LectureTasks {
             var vat = double.TryParse( Console.ReadLine(), out double v );
 
             var totalPrice = CalculateTotal( "Apples", totalProducts, price, v );
-            Console.WriteLine( $"Total price inc. VAT: {totalPrice}" );
+            Console.WriteLine( $"You bought {totalProducts} apples, total price (incl. tax): {totalPrice} kr" );
         }
     }
 }
